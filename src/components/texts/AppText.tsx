@@ -7,7 +7,7 @@ import { AppFonts } from '../../styles/fonts'
 interface AppTextProps extends TextProps {
     children: React.ReactNode,
     style?: TextStyle | TextStyle[],
-    variant: "bold" | "medium"
+    variant?: "bold" | "medium"
 }
 
 const AppText: React.FC<AppTextProps> = ({ children, style, variant = "medium", ...rest }) => {
