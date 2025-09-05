@@ -6,5 +6,6 @@ export const AppColors = {
     background: '#f6f6f6',
     diabledGray: "#D3D3D3",
     blueGray: "#E6E8EA",
-    medGray: "#939393"
+    medGray: "#939393",
+    borderColor: "#ccc"
 }
