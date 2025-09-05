@@ -11,31 +11,35 @@ import { AppColors } from '../../styles/colors'
 import { useNavigation } from '@react-navigation/native'
 
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUserName] = useState("")
     const navigation = useNavigation()
 
     return (
         <AppSafeView style={styles.container}>
             <Image source={IMAGES.appLogo} style={styles.logo} />
+            <AppTextInput placeholder='Username' onChangeText={setUserName} value={username} />
             <AppTextInput placeholder='Email' onChangeText={setEmail} value={email} />
             <AppTextInput placeholder='Password' onChangeText={setPassword} secureTextEntry value={password} />
+
             <AppText variant='bold' style={styles.appName}>Smart E-Commerce</AppText>
 
-            <AppButton title="Login"/>
+            <AppButton title="Create New Account"/>
             <AppButton 
-                title="Sign Up" 
-                style={styles.registerButton} 
+                title="Go To Sign In" 
+                style={styles.signInButton} 
                 backgroundColor={AppColors.white} 
                 color={AppColors.black}
-                onPress={() => navigation.navigate("SignUpScreen")}
+                onPress={() => navigation.navigate("SignInScreen")}
             />
         </AppSafeView>
     )
 }
-export default SignInScreen
+export default SignUpScreen;
+
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: s(16),
         marginBottom: vs(16)
     },
-    registerButton: {
+    signInButton: {
         borderWidth: 1,
         marginTop: vs(15),
         borderColor: AppColors.primary
