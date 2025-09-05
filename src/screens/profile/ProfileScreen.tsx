@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
+import HomeHeader from '../../components/headers/HomeHeader'
+import AppSafeView from '../../components/views/AppSafeView'
 const ProfileScreen = () => {
   return (
-    <View>
-      <Text>ProfileScreen</Text>
-    </View>
+    <AppSafeView>
+      <HomeHeader />
+      <Text>Profile Screen</Text>
+    </AppSafeView>
   )
 }
 export default ProfileScreen
