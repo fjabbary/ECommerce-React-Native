@@ -5,23 +5,30 @@ import AppText from '../texts/AppText'
 import { AppFonts } from '../../styles/fonts'
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { commonStyles } from '../../styles/sharedStyles'
+import { FC } from 'react'
 
+interface ProductCard {
+    title: string;
+    price: number;
+    imageURL: string;
+    onAddToCartPress: () => void;
+}
 
-const ProductCard = () => {
+const ProductCard: FC<ProductCard> = ({ title, price, imageURL, onAddToCartPress }) => {
     return (
         <View style={styles.container}>
 
-            <TouchableOpacity style={styles.addToCartButton}>
+            <TouchableOpacity style={styles.addToCartButton} onPress={onAddToCartPress}>
                 <FontAwesome name="shopping-cart" size={24} color={AppColors.white} style={{ fontSize: s(16) }} />
             </TouchableOpacity>
 
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: "https://www.hindustantimes.com/ht-img/img/2025/08/29/550x309/iphone_17_1750661575100_1756468203730.jpeg" }} />
+                <Image style={styles.image} source={{ uri: imageURL }} />
             </View>
 
             <View style={styles.detailsContainer}>
-                <AppText style={styles.titleText}>Iphone 15</AppText>
-                <AppText style={styles.priceText}>$1500</AppText>
+                <AppText style={styles.titleText}>{title}</AppText>
+                <AppText style={styles.priceText}>${price}</AppText>
             </View>
         </View>
     )
@@ -65,8 +72,8 @@ const styles = StyleSheet.create({
         color: AppColors.primary
     },
     addToCartButton: {
-        height: s(28),
-        width: s(28),
+        height: s(25),
+        width: s(25),
         position: "absolute",
         left: 5,
         top: 5,
