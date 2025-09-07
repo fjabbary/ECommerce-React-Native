@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { AppColors } from '../../styles/colors';
 import { s } from 'react-native-size-matters';
 import AppButton from '../buttons/AppButton';
+import { useNavigation } from '@react-navigation/native';
 
 
 interface TotalViewProps {
@@ -12,6 +13,9 @@ interface TotalViewProps {
 }
 
 const TotalView: FC<TotalViewProps> = ({ itemsPrice, orderTotal }) => {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -32,7 +36,7 @@ const TotalView: FC<TotalViewProps> = ({ itemsPrice, orderTotal }) => {
                 <AppText>Order Total:</AppText>
                 <AppText>${orderTotal}</AppText>
             </View>
-            <AppButton title="Continue" onPress={() => {}}/>
+            <AppButton style={styles.button} title="Continue" onPress={() => navigation.navigate("Checkout")}/>
         </View>
     )
 }
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
     row: {
         justifyContent: "space-between",
         flexDirection: "row",
-        marginVertical: s(7)
+        marginVertical: s(8)
     },
     separator: {
         height: 1,
@@ -52,5 +56,8 @@ const styles = StyleSheet.create({
         paddingTop: s(20),
         borderTopWidth: 1,
         borderTopColor: AppColors.blueGray
+    },
+    button: {
+        marginVertical: s(10)
     }
 })

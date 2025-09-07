@@ -32,7 +32,7 @@ export const products = [
     price: 59,
     title: "Logitech Mouse",
     imageURL:
-      "https://media.ldlc.com/r374/ld/products/00/05/88/25/LD0005882564_1.jpg",
+      "https://2b.com.eg/media/catalog/product/cache/661473ab953cdcdf4c3b607144109b90/m/a/ma658.jpg",
   },
   {
     id: 6,
