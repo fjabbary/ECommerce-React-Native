@@ -13,7 +13,7 @@ interface ProfileSectionButtonProps {
 const ProfileSectionButton: FC<ProfileSectionButtonProps> = ({title, onPress}) => {
   return (
     <View>
-      <TouchableOpacity style={styles.row}>
+      <TouchableOpacity style={styles.row} onPress={onPress}>
         <Text style={styles.text}>{title}</Text>
         <AntDesign name="right" size={16} color="black" />
       </TouchableOpacity>
