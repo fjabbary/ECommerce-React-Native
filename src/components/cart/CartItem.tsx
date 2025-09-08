@@ -10,10 +10,13 @@ interface CartItemProps {
     imageURL: string,
     title: string,
     price: number,
-    onDeletePress: () => void
+    qty: number,
+    onDeletePress: () => void,
+    onDecreasePress: () => void,
+    onIncreasePress: () => void,
 }
 
-const CartItem: FC<CartItemProps> = ({ imageURL, title, price, onDeletePress }) => {
+const CartItem: FC<CartItemProps> = ({ imageURL, title, price, qty, onDeletePress, onDecreasePress, onIncreasePress }) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -24,16 +27,16 @@ const CartItem: FC<CartItemProps> = ({ imageURL, title, price, onDeletePress }) 
                 <AppText>${price}</AppText>
                 <View style={styles.qtyContainer}>
                     <TouchableOpacity>
-                        <EvilIcons name="minus" size={24} color="black" style={styles.btn} />
+                        <EvilIcons name="minus" size={24} color="black" style={styles.btn} onPress={onDecreasePress} />
                     </TouchableOpacity>
-                    <AppText style={styles.qty}>{4}</AppText>
+                    <AppText style={styles.qty}>{qty}</AppText>
                     <TouchableOpacity >
-                        <EvilIcons name="plus" size={24} color="black" style={styles.btn} />
+                        <EvilIcons name="plus" size={24} color="black" style={styles.btn} onPress={onIncreasePress} />
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.deleteContainer}>
-                <AntDesign name="delete" size={24} color={AppColors.red} />
+                <AntDesign name="delete" size={24} color={AppColors.red} onPress={onDeletePress} />
             </View>
         </View>
     )

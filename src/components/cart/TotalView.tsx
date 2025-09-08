@@ -19,7 +19,7 @@ const TotalView: FC<TotalViewProps> = ({ itemsPrice, orderTotal }) => {
     return (
         <View style={styles.container}>
             <View style={styles.row}>
-                <AppText>Item Price: </AppText>
+                <AppText>Items Price: </AppText>
                 <AppText>${itemsPrice}</AppText>
             </View>
             <View style={styles.row}>
@@ -28,7 +28,7 @@ const TotalView: FC<TotalViewProps> = ({ itemsPrice, orderTotal }) => {
             </View>
             <View style={styles.row}>
                 <AppText>Shipping Fee</AppText>
-                <AppText>{itemsPrice}</AppText>
+                <AppText>$15</AppText>
             </View>
             <View style={styles.separator} />
 

@@ -5,9 +5,12 @@ import { AppFonts } from '../../styles/fonts'
 import ProductCard from '../../components/cards/ProductCard'
 import { products } from '../../data/products'
 import { s, vs } from 'react-native-size-matters'
-
+import { useDispatch } from 'react-redux'
+import { addItemToCart } from '../../store/reducers/cartSlice'
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
   return (
     <AppSafeView>
       <HomeHeader />
@@ -17,7 +20,7 @@ const HomeScreen = () => {
         numColumns={2}
         data={products}
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <ProductCard title={item.title} price={item.price} imageURL={item.imageURL} onAddToCartPress={() => { }} />
+        renderItem={({ item }) => <ProductCard title={item.title} price={item.price} imageURL={item.imageURL} onAddToCartPress={() => dispatch(addItemToCart(item)) } />
         }
       />
     </AppSafeView>
