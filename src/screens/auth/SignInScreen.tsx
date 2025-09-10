@@ -10,25 +10,50 @@ import AppButton from '../../components/buttons/AppButton'
 import { AppColors } from '../../styles/colors'
 import { useNavigation } from '@react-navigation/native'
 
+import AppTextInputController from '../../components/inputs/AppTextController'
+import { useForm } from 'react-hook-form'
+import * as yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup'
+
+const schema = yup.object({
+    email: yup
+        .string()
+        .required("Email is required")
+        .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)
+        .min(3, "email must be valid"),
+
+    password: yup
+        .string()
+        .required("Password is required")
+        .min(6, 'Password must be 6 digits'),
+
+}).required();
+
 
 const SignInScreen = () => {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const { control, handleSubmit } = useForm({
+        resolver: yupResolver(schema)
+    })
     const navigation = useNavigation()
+
+    const onLoginPress = () => {
+        navigation.navigate("MainAppBottomTabs")
+    }
 
     return (
         <AppSafeView style={styles.container}>
             <Image source={IMAGES.appLogo} style={styles.logo} />
-            <AppTextInput placeholder='Email' onChangeText={setEmail} value={email} />
-            <AppTextInput placeholder='Password' onChangeText={setPassword} secureTextEntry value={password} />
+            <AppTextInputController control={control} placeholder='Email' name="email" />
+            <AppTextInputController control={control} placeholder='Password' secureTextEntry name="password" />
             <AppText variant='bold' style={styles.appName}>Smart E-Commerce</AppText>
 
-            <AppButton title="Login" onPress={() => navigation.navigate("MainAppBottomTabs")}/>
-            <AppButton 
-                title="Sign Up" 
-                style={styles.registerButton} 
-                backgroundColor={AppColors.white} 
+            <AppButton title="Login" onPress={handleSubmit(onLoginPress)} />
+
+            <AppButton
+                title="Sign Up"
+                style={styles.registerButton}
+                backgroundColor={AppColors.white}
                 color={AppColors.black}
                 onPress={() => navigation.navigate("SignUpScreen")}
             />

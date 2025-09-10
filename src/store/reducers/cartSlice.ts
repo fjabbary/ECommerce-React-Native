@@ -38,7 +38,6 @@ const cartSlice = createSlice({
         },
 
         increaseCartItemQty: (state, action) => {
-            console.log('A')
             state.cartItems = state.cartItems.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item)
         },
 
